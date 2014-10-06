@@ -28,6 +28,9 @@ module Imgurr
         !!(RUBY_PLATFORM =~ /mswin|mingw/)
       end
 
+      def linux?
+        !(darwin? || windows?)
+      end
       # Public: returns the command used to open a file or URL
       # for the current platform.
       #
@@ -84,6 +87,8 @@ module Imgurr
       def capture_command
         if darwin?
           'screencapture'
+        elsif linux?
+          'import'
         end
       end
 
